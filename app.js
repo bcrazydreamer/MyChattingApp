@@ -13,14 +13,12 @@ colors=["#FFCDD2","#F50057","#9C27B0","#E040FB","#651FFF","#3D5AFE","#1E88E5","#
 dmsg={};
 
 
-
 app.get('/', function(req, res){
   var ip=requestIp.getClientIp(req);
-  if(! dmsg[ip.substring(7)])
-  {
+  
     var userinfo=[colors[Math.floor(Math.random() * 14)]];
     dmsg[ip.substring(7)]=userinfo;
-  }
+ 
   res.sendFile(__dirname + '/index.html');
 });
 
@@ -41,8 +39,10 @@ io.on('connection', function(socket){
   	var userip=socket.request.connection._peername.address;
   	dmsg.message=msg;
   	dmsg.user=userip.substring(7);
-  	dmsg.ucolor='red';//dmsg[userip.substring(7)][0];
-    dmsg.uname='user';//dmsg[userip.substring(7)][1];
+  	dmsg.ucolor=dmsg[userip.substring(7)][0];
+    dmsg.uname=dmsg[userip.substring(7)][1];
+	console.log(dmsg.ucolor);
+	console.log(dmsg.uname);
     io.emit('dchat msg', dmsg);
   });
 });
