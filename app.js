@@ -47,7 +47,7 @@ io.on('connection', function(socket){
   	dmsg.message=msg;
   	dmsg.user=userip.substring(7);
   	dmsg.ucolor='red';//dmsg[userip.substring(7)][0];
-    dmsg.uname=dmsg[userip.substring(7)][1];
+    dmsg.uname='user';//dmsg[userip.substring(7)][1];
     io.emit('dchat msg', dmsg);
   });
 });
