@@ -6,7 +6,7 @@ var port = process.env.PORT || 3000;
 var path=require('path');
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
-
+var socket = io('https://whochat.herokuapp.com/');
 app.use(express.static(path.join(__dirname,"public")));
 var requestIp = require('request-ip');
 colors=["#FFCDD2","#F50057","#9C27B0","#E040FB","#651FFF","#3D5AFE","#1E88E5","#00B0FF","#76FF03","#AEEA00","#FFC400","#FF6E40","#B0BEC5","#FFC107"];
