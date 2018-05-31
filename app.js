@@ -20,11 +20,16 @@ app.use(function(req, res, next) {
 
 
 app.get('/', function(req, res){
-  var ip=requestIp.getClientIp(req);
-  if(! dmsg[ip.substring(7)])
+  var ip = (req.headers['x-forwarded-for'] ||
+     req.connection.remoteAddress ||
+     req.socket.remoteAddress ||
+     req.connection.socket.remoteAddress).split(",")[0];
+  console.log(ip);
+  //var ip=requestIp.getClientIp(req);
+  if(! dmsg[ip])
   {
     var userinfo=[colors[Math.floor(Math.random() * 14)]];
-    dmsg[ip.substring(7)]=userinfo;
+    dmsg[ip]=userinfo;
   }
   res.sendFile(__dirname + '/index.html');
 });
@@ -33,7 +38,7 @@ app.post("/",function(req,res)
 {
   var ip=requestIp.getClientIp(req);
   var username=req.body.user.name;
-  dmsg[ip.substring(7)][1]=username;
+  dmsg[ip][1]=username;
   res.sendFile(__dirname + '/chatroom.html');
 });
 
@@ -45,9 +50,9 @@ io.on('connection', function(socket){
   socket.on('dchat msg', function(msg){
   	var userip=socket.request.connection._peername.address;
   	dmsg.message=msg;
-  	dmsg.user=userip.substring(7);
-  	dmsg.ucolor='#E040FB';//dmsg[userip.substring(7)][0];
-    dmsg.uname="Anonymous";//dmsg[userip.substring(7)][1];
+  	dmsg.user=userip;
+  	dmsg.ucolor=dmsg[userip][0];
+    dmsg.uname=dmsg[userip][1];
     io.emit('dchat msg', dmsg);
   });
 });
