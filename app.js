@@ -5,6 +5,7 @@ var io = require('socket.io')(http);
 var port = process.env.PORT || 3000;
 var path=require('path');
 var bodyParser = require('body-parser');
+var socket = require('socket.io-client')('https://whochat.herokuapp.com/');
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname,"public")));
