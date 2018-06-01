@@ -53,7 +53,7 @@ io.on('connection', function(socket){
   	var userip=socket.request.connection.remoteAddress;
   	dmsg.message=msg;//dmsg.debug+userip
   	dmsg.user=userip.substring(7);
-  	dmsg.ucolor='#E040FB';//dmsg[userip.substring(7)][0];
+  	dmsg.ucolor=[colors[Math.floor(Math.random() * 14)]];//'#E040FB';//dmsg[userip.substring(7)][0];
     dmsg.uname="Anonymous";//dmsg[userip.substring(7)][1];
     io.emit('dchat msg', dmsg);
   });
