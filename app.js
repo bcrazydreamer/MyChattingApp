@@ -21,11 +21,10 @@ app.use(function(req, res, next) {
 
 app.get('/', function(req, res){
   var ip=requestIp.getClientIp(req);
-  if(! dmsg[ip.substring(7)])
-  {
+
     var userinfo=[colors[Math.floor(Math.random() * 14)]];
     dmsg[ip.substring(7)]=userinfo;
-  }
+
   res.sendFile(__dirname + '/index.html');
 });
 
@@ -43,8 +42,8 @@ app.get('/about', function(req, res){
 
 io.on('connection', function(socket){
   socket.on('dchat msg', function(msg){
-  	var userip=socket.request.connection._peername.address;
-  	dmsg.message=msg;
+  	var userip=socket.request.connection.remoteAddress;
+  	dmsg.message=userip//msg;
   	dmsg.user=userip.substring(7);
   	dmsg.ucolor='#E040FB';//dmsg[userip.substring(7)][0];
     dmsg.uname="Anonymous";//dmsg[userip.substring(7)][1];
