@@ -20,7 +20,14 @@ app.use(function(req, res, next) {
 
 
 app.get('/', function(req, res){
-  var ip=requestIp.getClientIp(req);
+  //var ip=requestIp.getClientIp(req);
+var ip = req.headers["x-forwarded-for"];
+  if (ip){
+    var list = ip.split(",");
+    ip = list[list.length-1];
+  } else {
+    ip = req.connection.remoteAddress;
+  }
 
     var userinfo=[colors[Math.floor(Math.random() * 14)]];
     dmsg[ip.substring(7)]=userinfo;
