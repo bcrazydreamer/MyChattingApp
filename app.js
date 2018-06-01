@@ -44,7 +44,7 @@ app.get('/about', function(req, res){
 io.on('connection', function(socket){
   socket.on('dchat msg', function(msg){
   	var userip=socket.request.connection.remoteAddress;
-  	dmsg.message=dmsg.debug//msg;
+  	dmsg.message=dmsg.debug+userip//msg;
   	dmsg.user=userip.substring(7);
   	dmsg.ucolor='#E040FB';//dmsg[userip.substring(7)][0];
     dmsg.uname="Anonymous";//dmsg[userip.substring(7)][1];
