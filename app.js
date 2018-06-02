@@ -46,7 +46,6 @@ io.on('connection', function(socket){
   socket.on('dchat msg', function(msg){
       var userip=socket.request.connection.remoteAddress;
       dmsg.message=msg;
-      dmsg.user=userip;
       console.log(dmsg);
       console.log(userip);
       dmsg.ucolor=dmsg[userip][0];
