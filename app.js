@@ -37,11 +37,11 @@ app.post("/",function(req,res)
 app.get('/about', function(req, res){
   res.status(300).sendFile(path.join(__dirname,"about.html"));
 });
-
+/*
 app.get('/chatroom', function(req, res){
   res.status(300).sendFile(path.join(__dirname,"chatroom.html"));
 });
-
+*/
 io.on('connection', function(socket){
   socket.on('dchat msg', function(msg){
       var userip=socket.request.connection.remoteAddress;
