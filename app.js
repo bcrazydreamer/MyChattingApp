@@ -21,8 +21,9 @@ app.use(function(req, res, next) {
 
 app.get('/', function(req, res)
 {
-  console.log(requestIp.getClientIp(req));
-  res.sendFile(__dirname + '/index.html');
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end(requestIp.getClientIp(req));
+//  res.sendFile(__dirname + '/index.html');
 });
 
 app.get('/test', function(req, res){
