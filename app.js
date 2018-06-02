@@ -47,7 +47,8 @@ io.on('connection', function(socket){
       var userip=socket.request.connection.remoteAddress;
       dmsg.message=msg;
       dmsg.user=userip;
-      console.log(dmsg[userip]);
+      console.log(dmsg);
+      console.log(userip);
       dmsg.ucolor=dmsg[userip][0];
       dmsg.uname=dmsg[userip][1];
       io.emit('dchat msg', dmsg);
