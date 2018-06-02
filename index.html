@@ -57,14 +57,14 @@
       $('form').submit(function(){
         socket.emit('EnterInChat', $('#username').val());
         $('#username').val('');
-        //document.getElementById("userform").submit();
+        document.getElementById("userform").submit();
         return false;
       });
     </script>
         <script type="text/javascript">
             function chatroom()
             {
-                window.location.href = "/chatroom";
+                //window.location.href = "/chatroom";
             }
             function clearform()
             {
