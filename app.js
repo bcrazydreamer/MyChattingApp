@@ -22,7 +22,7 @@ app.use(function(req, res, next) {
 
 app.get('/', function(req, res)
 {
-  console,log(internalIp.v4.sync());
+  console.log(internalIp.v4.sync());
   res.sendFile(__dirname + '/index.html');
 });
 
