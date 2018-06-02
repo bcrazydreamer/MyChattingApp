@@ -21,6 +21,7 @@ app.use(function(req, res, next) {
 
 app.get('/', function(req, res)
 {
+  console.log(requestIp.getClientIp(req));
   res.sendFile(__dirname + '/index.html');
 });
 
@@ -50,12 +51,12 @@ io.on('connection', function(socket){
       console.log(userip);
       try
       {
-      dmsg.ucolor=dmsg[userip][0];
-      dmsg.uname=dmsg[userip][1];
+        dmsg.ucolor=dmsg[userip][0];
+        dmsg.uname=dmsg[userip][1];
       }
       catch(err)
       {
-      dmsg.uname="Testing";
+        dmsg.uname="Anonymous";
       }
       io.emit('dchat msg', dmsg);
     });
