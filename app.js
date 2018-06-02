@@ -4,6 +4,7 @@ var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 var port = process.env.PORT || 3000;
 var path=require('path');
+var internalIp = require('internal-ip');
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -22,7 +23,7 @@ app.use(function(req, res, next) {
 app.get('/', function(req, res)
 {
   res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end(requestIp.getClientIp(req));
+  res.end(internalIp.v4.sync());
 //  res.sendFile(__dirname + '/index.html');
 });
 
