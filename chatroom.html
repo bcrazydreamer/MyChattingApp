@@ -119,9 +119,8 @@
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
-      var socket = io();
+      var socket = io().connect('https://whochat.herokuapp.com');
       $('form').submit(function(){
-
         socket.emit('dchat msg', $('#txtmsg').val());
         $('#txtmsg').val('');
         return false;
@@ -130,7 +129,6 @@
         d=new Date().toLocaleTimeString();
         if(dmsg.message.trim().length>0)
         {     
-
               $("#popup")[0].play();
               $('#messages').append($('<div class="list-group-item namediv" style="margin-top:10px;width:100%;background:'+dmsg.ucolor+';">').text(dmsg.uname+' - '+d));
               $('#messages').append($('<div style="word-break:break-all;" class="well msgdiv allSides">').text(dmsg.message));
