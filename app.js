@@ -22,9 +22,8 @@ app.use(function(req, res, next) {
 
 app.get('/', function(req, res)
 {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end(internalIp.v4.sync());
-//  res.sendFile(__dirname + '/index.html');
+  console,log(internalIp.v4.sync());
+  res.sendFile(__dirname + '/index.html');
 });
 
 app.get('/test', function(req, res){
