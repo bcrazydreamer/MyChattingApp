@@ -43,15 +43,15 @@ app.get('/test', function(req, res){
 
 app.post("/",function(req,res)
 {
-  var ip=requestIp.getClientIp(req);
-  var username=req.body.user.name;
-  dmsg[ip.substring(7)][1]=username;
+  //var ip=requestIp.getClientIp(req);
+  //var username=req.body.user.name;
+  //dmsg[ip.substring(7)][1]=username;
   res.sendFile(__dirname + '/chatroom.html');
 });
-
+/*
 app.get('/chatroom', function(req, res){
   res.status(300).sendFile(path.join(__dirname,"chatroom.html"));
-});
+});*/
 
 app.get('/about', function(req, res){
   res.status(300).sendFile(path.join(__dirname,"about.html"));
@@ -60,11 +60,11 @@ app.get('/about', function(req, res){
 
 io.on('connection', function(socket){
   socket.on('dchat msg', function(msg){
-    	var userip=socket.request.connection.remoteAddress;
+      var userip=socket.request.connection.remoteAddress;
       console.log(userip);
-    	dmsg.message=msg;//dmsg.debug+userip
-    	dmsg.user=userip;
-    	dmsg.ucolor=dmsg[userip][0];//[colors[Math.floor(Math.random() * 14)]];//
+      dmsg.message=msg;//dmsg.debug+userip
+      dmsg.user=userip;
+      dmsg.ucolor=dmsg[userip][0];//[colors[Math.floor(Math.random() * 14)]];//
       dmsg.uname=dmsg[userip][1];//"Anonymous";
       io.emit('dchat msg', dmsg);
     });
@@ -73,13 +73,14 @@ io.on('connection', function(socket){
     var ip=socket.request.connection.remoteAddress;
     var userinfo=[colors[Math.floor(Math.random() * 14)]];
     dmsg[ip]=userinfo;
+    dmsg.status=true;
     console.log(ip);
 
     var username=msg;
     dmsg[ip][1]=username;
 
-    var destination = '/chatroom';
-    io.emit('redirect', destination);
+   // var destination = '/chatroom';
+  //  io.emit('redirect', destination);
     });
 });
 

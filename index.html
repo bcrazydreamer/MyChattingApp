@@ -30,7 +30,7 @@
                         <br>
                         <h1 style="font-size: 30">Choose A User Name</h1>
 
-                        <form action="" id="userform">
+                        <form action="/" method="post" id="userform" onsubmit="chatroom()">
                             <input type="text" id="username" name="user[name]" class="input" placeholder="Username" required="required" />
                             <center>
                                 <input type="submit" name="submit" id="loginbtn" class="inputbtn unselectable" value="Enter In Chat"> </center>
@@ -57,17 +57,11 @@
       $('form').submit(function(){
         socket.emit('EnterInChat', $('#username').val());
         $('#username').val('');
+        document.getElementById("userform").submit();
         return false;
       });
-      socket.on('redirect', function(destination) {
-        window.location.href = destination;
-    });
     </script>
         <script type="text/javascript">
-            function chatroom()
-            {
-             window.location="";   
-            }
             function clearform()
             {
                 $('#userform')[0].reset();
