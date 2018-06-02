@@ -4,7 +4,6 @@ var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 var port = process.env.PORT || 3000;
 var path=require('path');
-var internalIp = require('internal-ip');
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -19,10 +18,8 @@ app.use(function(req, res, next) {
   next();
 });
 
-
 app.get('/', function(req, res)
 {
-  console.log(internalIp.v4.sync());
   res.sendFile(__dirname + '/index.html');
 });
 
