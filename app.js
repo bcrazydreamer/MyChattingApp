@@ -45,9 +45,9 @@ app.get('/chatroom', function(req, res){
 io.on('connection', function(socket){
   socket.on('dchat msg', function(msg){
       var userip=socket.request.connection.remoteAddress;
-      console.log(userip);
       dmsg.message=msg;
       dmsg.user=userip;
+      console.log(dmsg[userip]);
       dmsg.ucolor=dmsg[userip][0];
       dmsg.uname=dmsg[userip][1];
       io.emit('dchat msg', dmsg);
