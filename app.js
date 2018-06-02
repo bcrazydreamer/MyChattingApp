@@ -60,6 +60,7 @@ io.on('connection', function(socket){
     console.log(ip);
     var username=msg;
     dmsg[ip][1]=username;
+    console.log(dmsg);
     });
 });
 
