@@ -23,10 +23,6 @@ app.get('/', function(req, res)
   res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/test', function(req, res){
-  res.sendFile(__dirname + '/test.html');
-});
-
 app.post("/",function(req,res)
 {
   res.sendFile(__dirname + '/chatroom.html');
