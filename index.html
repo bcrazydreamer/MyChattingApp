@@ -50,8 +50,9 @@
             </br>
                 <center><h2 style="color: rgba(0,0,0,0.5);">DChat © 2018</h2></center>
         </footer>
-     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    
     <script>
       var socket = io().connect('https://whochat.herokuapp.com');
       $('form').submit(function(){
@@ -61,6 +62,7 @@
         return false;
       });
     </script>
+
         <script type="text/javascript">
             function chatroom()
             {
