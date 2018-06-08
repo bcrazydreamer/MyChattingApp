@@ -39,7 +39,7 @@ app.get('/chatroom', function(req, res){
 */
 io.on('connection', function(socket){
   socket.on('dchat msg', function(msg){
-      var userip=socket.request.connection.remoteAddress;
+      var userip=socket.handshake.headers['x-forwarded-for'] || socket.handshake.address.address;//socket.request.connection.remoteAddress;
       dmsg.message=msg;
       console.log(dmsg);
       console.log("-------Ip When Message-------",userip);
@@ -56,7 +56,7 @@ io.on('connection', function(socket){
     });
 
   socket.on('EnterInChat', function(user){
-    var ip=socket.request.connection.remoteAddress;
+    var ip=socket.handshake.headers['x-forwarded-for'] || socket.handshake.address.address;//socket.request.connection.remoteAddress;
     dmsg[ip]=[colors[Math.floor(Math.random() * 14)]];
     dmsg[ip][1]=user;
     console.log("-------Ip When Login-------"+ip);
