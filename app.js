@@ -42,7 +42,7 @@ io.on('connection', function(socket){
       var userip=socket.request.connection.remoteAddress;
       dmsg.message=msg;
       console.log(dmsg);
-      console.log(userip);
+      console.log("-------Ip When Message-------",userip);
       try
       {
         dmsg.ucolor=dmsg[userip][0];
@@ -60,7 +60,7 @@ io.on('connection', function(socket){
     dmsg[ip]=[colors[Math.floor(Math.random() * 14)]];
     console.log(ip);
     dmsg[ip][1]=user;
-    console.log("----------------",dmsg);
+    console.log("-------Ip When Login-------",dmsg);
     });
 });
 
