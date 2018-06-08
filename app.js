@@ -58,7 +58,6 @@ io.on('connection', function(socket){
   socket.on('EnterInChat', function(user){
     var ip=socket.request.connection.remoteAddress;
     dmsg[ip]=[colors[Math.floor(Math.random() * 14)]];
-    console.log(ip);
     dmsg[ip][1]=user;
     console.log("-------Ip When Login-------"+ip);
     console.log(dmsg);
